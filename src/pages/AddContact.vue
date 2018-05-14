@@ -1,21 +1,34 @@
 <template>
   <div>
-    <form @submit.prevent="onSubmit">
+    <form v-validate="validationRules">
       <div class="form-group">
         <label for="firstName">First Name</label>
-        <input class="form-control" type="text" placeholder="First name" v-model="contact.firstName" v-focus-on:write.name="focus">
+        <input 
+          class="form-control" 
+          placeholder="First name" 
+          v-model="contact.firstName" 
+          v-validate>
       </div>
       <div class="form-group">
         <label for="lastName">Last Name</label>
-        <input class="form-control" type="text" placeholder="Last name" v-model="contact.lastName">
+        <input 
+        class="form-control" 
+        placeholder="Last name" 
+        v-model="contact.lastName">
       </div>
       <div class="form-group">
         <label for="email">Email</label>
-        <input class="form-control" type="email" placeholder="Email" v-model="contact.email">
+        <input 
+        class="form-control" 
+        placeholder="Email" 
+        v-model="contact.email">
       </div>
       <div class="form-group">
         <label for="number">Number</label>
-        <input class="form-control" type="number" placeholder="Number" v-model="contact.number">
+        <input 
+        class="form-control" 
+        placeholder="Number" 
+        v-model="contact.number">
       </div>
       <button type="submit" class="btn btn-primary">Create contact</button>
     </form>
@@ -36,7 +49,9 @@
           email: '',
           number: ''
         },
-        focus: false
+        validationRules: {
+          email: ['required', 'email']
+        }
       }
     },
     methods: {
