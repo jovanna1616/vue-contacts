@@ -1,13 +1,13 @@
 <template>
   <div>
-    <form v-validate="validationRules">
+    <form v-validate="validationConfig">
       <div class="form-group">
         <label for="firstName">First Name</label>
         <input 
           class="form-control" 
           placeholder="First name" 
           v-model="contact.firstName" 
-          v-validate>
+          >
       </div>
       <div class="form-group">
         <label for="lastName">Last Name</label>
@@ -21,7 +21,8 @@
         <input 
         class="form-control" 
         placeholder="Email" 
-        v-model="contact.email">
+        v-model="contact.email"
+        id="email">
       </div>
       <div class="form-group">
         <label for="number">Number</label>
@@ -30,9 +31,8 @@
         placeholder="Number" 
         v-model="contact.number">
       </div>
-      <button type="submit" class="btn btn-primary">Create contact</button>
+      <button type="text" class="btn btn-primary">Create contact</button>
     </form>
-    <!-- <div v-demo="'EEEEE'"></div> -->
   </div>
 </template>
 
@@ -49,8 +49,14 @@
           email: '',
           number: ''
         },
-        validationRules: {
-          email: ['required', 'email']
+        validationConfig: {
+          validationRules: {
+            email: ['required', 'email']
+          },
+          submitCallback: () => {
+            console.log('eee');
+            this.onSubmit()
+          }
         }
       }
     },
